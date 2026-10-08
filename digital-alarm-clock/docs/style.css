@@ -1,0 +1,226 @@
+:root {
+  --bg: #e4eadf;
+  --panel: #cfd9c8;
+  --face: #2f3e34;
+  --digits: #c9ddbf;
+  --text: #2f3e2f;
+  --accent: #6b8f71;
+  --accent-dark: #4f6f55;
+  --white: #f6f8f4;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Nunito", "Segoe UI", system-ui, sans-serif;
+  display: flex;
+  justify-content: center;
+  padding: 24px 16px;
+}
+
+.app { width: 100%; max-width: 440px; }
+
+.face {
+  background: var(--face);
+  color: var(--digits);
+  text-align: center;
+  padding: 28px 16px 22px;
+  border-radius: 6px;
+}
+
+.time {
+  font-family: "Share Tech Mono", Consolas, monospace;
+  font-size: clamp(2.4rem, 12vw, 3.6rem);
+  letter-spacing: 0.04em;
+}
+
+.date { margin-top: 4px; font-size: 1rem; }
+
+.switch {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 2px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.switch input { accent-color: var(--accent-dark); }
+
+.card {
+  background: var(--panel);
+  padding: 16px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+}
+
+.card h2 { margin: 0 0 12px; font-size: 1rem; }
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.row label { width: 48px; font-size: 0.9rem; }
+
+.row input {
+  flex: 1;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 4px;
+  background: var(--white);
+  color: var(--text);
+  font: inherit;
+}
+
+.btn {
+  background: var(--accent);
+  color: var(--white);
+  border: 0;
+  border-radius: 4px;
+  padding: 10px 16px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn:hover { background: var(--accent-dark); }
+.card .btn { width: 100%; }
+
+:focus-visible { outline: 3px solid var(--accent-dark); outline-offset: 2px; }
+
+.list { list-style: none; margin: 0; padding: 0; }
+
+.list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--white);
+  padding: 10px 12px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+.list li.off { opacity: 0.55; }
+
+.list .when {
+  font-family: "Share Tech Mono", Consolas, monospace;
+  font-size: 1.2rem;
+}
+
+.list .name { flex: 1; font-size: 0.9rem; overflow-wrap: anywhere; }
+
+.small {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent-dark);
+  border-radius: 4px;
+  padding: 4px 8px;
+  font: inherit;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.small:hover { background: var(--accent); color: var(--white); }
+
+.empty { margin: 0; font-size: 0.9rem; }
+
+.ringing {
+  position: fixed;
+  inset: 0;
+  background: rgba(47, 62, 52, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.ringing[hidden] { display: none; }
+
+.ring-box { text-align: center; color: var(--digits); }
+
+.ring-time {
+  font-family: "Share Tech Mono", Consolas, monospace;
+  font-size: clamp(3rem, 16vw, 5rem);
+}
+
+.ring-label { font-size: 1.2rem; margin-bottom: 20px; }
+.ring-actions { display: flex; gap: 12px; justify-content: center; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .ring-time { animation: pulse 1s steps(2, jump-none) infinite; }
+  @keyframes pulse { 50% { opacity: 0.45; } }
+}
+
+/* ---------- tabs ---------- */
+.zone { margin-top: 2px; font-size: 0.8rem; opacity: 0.8; }
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
+.tab {
+  flex: 1;
+  padding: 10px;
+  border: 0;
+  border-radius: 4px;
+  background: var(--panel);
+  color: var(--text);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.tab:hover { background: #bfccb7; }
+.tab.active { background: var(--accent); color: var(--white); }
+
+[hidden] { display: none !important; }
+
+/* ---------- world time ---------- */
+.row select {
+  flex: 1;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 4px;
+  background: var(--white);
+  color: var(--text);
+  font: inherit;
+}
+
+.world-item { align-items: center; }
+
+.world-item .place { flex: 1; min-width: 0; }
+.world-item .city { font-weight: 700; }
+.world-item .meta { font-size: 0.8rem; opacity: 0.75; }
+
+.world-item .clock {
+  font-family: "Share Tech Mono", Consolas, monospace;
+  font-size: 1.15rem;
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* ---------- confirmation message ---------- */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  max-width: calc(100% - 32px);
+  background: var(--face);
+  color: var(--digits);
+  padding: 12px 18px;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  text-align: center;
+  z-index: 5;
+}

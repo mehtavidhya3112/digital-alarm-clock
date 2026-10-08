@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Digital Alarm Clock</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <section class="face" aria-label="Current time">
+      <div id="time" class="time">--:--:--</div>
+      <div id="date" class="date"></div>
+      <div id="localZone" class="zone"></div>
+    </section>
+
+    <label class="switch">
+      <input type="checkbox" id="format24">
+      <span>Use 24-hour clock</span>
+    </label>
+
+    <div class="tabs" role="tablist" aria-label="Sections">
+      <button id="tabAlarms" class="tab active" role="tab" aria-selected="true" aria-controls="alarmsPanel">Alarms</button>
+      <button id="tabWorld" class="tab" role="tab" aria-selected="false" aria-controls="worldPanel">World time</button>
+    </div>
+
+    <div id="alarmsPanel" role="tabpanel" aria-labelledby="tabAlarms">
+      <section class="card">
+        <h2>New alarm</h2>
+        <div class="row">
+          <label for="alarmTime">Time</label>
+          <input type="time" id="alarmTime" value="07:00">
+        </div>
+        <div class="row">
+          <label for="alarmLabel">Label</label>
+          <input type="text" id="alarmLabel" placeholder="Wake up" maxlength="40">
+        </div>
+        <button id="addBtn" class="btn">Add alarm</button>
+      </section>
+
+      <section class="card">
+        <h2>Your alarms</h2>
+        <ul id="alarmList" class="list"></ul>
+        <p id="empty" class="empty">No alarms yet. Add one above.</p>
+      </section>
+    </div>
+
+    <div id="worldPanel" role="tabpanel" aria-labelledby="tabWorld" hidden>
+      <section class="card">
+        <h2>Add a city</h2>
+        <div class="row">
+          <label for="citySelect">City</label>
+          <select id="citySelect"></select>
+        </div>
+        <button id="addCityBtn" class="btn">Add city</button>
+      </section>
+
+      <section class="card">
+        <h2>World time</h2>
+        <ul id="worldList" class="list"></ul>
+        <p id="worldEmpty" class="empty" hidden>No cities yet. Add one above.</p>
+      </section>
+    </div>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+  <div id="ringing" class="ringing" hidden role="alertdialog" aria-live="assertive">
+    <div class="ring-box">
+      <div id="ringTime" class="ring-time"></div>
+      <div id="ringLabel" class="ring-label"></div>
+      <div class="ring-actions">
+        <button id="stopBtn" class="btn">Stop</button>
+        <button id="snoozeBtn" class="btn">Snooze 5 min</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

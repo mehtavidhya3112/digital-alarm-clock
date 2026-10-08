@@ -1,0 +1,5 @@
+{
+  "python.terminal.activateEnvironment": true,
+  "editor.formatOnSave": false,
+  "files.encoding": "utf8"
+}
